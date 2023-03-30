@@ -1,6 +1,6 @@
 # MyOpenCV
 
-Youtube(korean) [link]()
+Youtube(korean) [link](https://youtu.be/zESoeGguuaU)
 
 Curriculum
 1. Image Processing basics
