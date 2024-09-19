@@ -3,6 +3,7 @@ import numpy as np
 from IP6_1 import zero_padding
 from IP6_test1 import replicate_padding
 from IP6_test2 import mirror_padding
+from IP6_2 import filtering as filtering_old
 
 
 def filtering(img, kernel, padding=0, last_norm=True):
@@ -38,7 +39,8 @@ def main():
     
     kernel = np.full((3,3), 1/9)
     
-    image_filt = filtering(img, kernel, padding=kernel.shape[0]//2)
+    #image_filt = filtering(img, kernel, padding=kernel.shape[0]//2)
+    image_filt = filtering_old(img, kernel, padding=kernel.shape[0]//2)
 
     cv2.imshow('image', img)
     cv2.imshow('image_filt', image_filt)

@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import time
 from IP6_1 import zero_padding
 from IP6_test1 import replicate_padding
 from IP6_test2 import mirror_padding
@@ -21,6 +22,7 @@ def filtering(img, kernel, padding=0, last_norm=True):
     kh_half, kw_half = kh//2, kw//2
 
     print('filtering...')
+    tmr = time.time()
     for row in range(padding, h-padding):
         for col in range(padding, w-padding):
             for ch in range(c):
@@ -31,6 +33,7 @@ def filtering(img, kernel, padding=0, last_norm=True):
                         value += roi[row_k, col_k] * kernel[row_k, col_k]
                 
                 img_filter[row, col, ch] = value
+    print('filtering time : %f'%(time.time() - tmr))
                 
     img_filter = img_filter[padding:padding+h_org, padding:padding+w_org] 
     if last_norm:
@@ -42,11 +45,11 @@ def filtering(img, kernel, padding=0, last_norm=True):
 def main():
     img = cv2.imread('lena.png')
     
-    kernel = np.full((3,3), 1/9)
+    # kernel = np.full((3,3), 1/9)
     # kernel = np.full((3,3), 1/15)
     # kernel = np.full((3,3), 1/5)
     
-    # kernel = np.full((9,9), 1/81)
+    kernel = np.full((9,9), 1/81)
     
     image_filt = filtering(img, kernel, padding=kernel.shape[0]//2)
 
